@@ -107,13 +107,12 @@ onUpdated(() => {
         </div>
 
         <div>
-
             <div class="mt-10">
                 <div class="mb-5 ">
                     Displaying Page {{ $props.users.current_page }} of {{ Math.ceil($props.users.total / $props.users.per_page) }}
                 </div>
                 <Link v-for="link in $page.props.users.links" :key="link" :href="link.url ? link.url : ''"
-                    :class="['px-3 mx-1 py-2 rounded-lg text-white', link.active ? 'bg-red-500' : 'bg-blue-500', link.url == null ? 'opacity-90 cursor-default bg-blue-400' : '']">
+                    :class="['px-3 mx-1 py-2 rounded-lg ', link.label === '...' ? 'text-black' : 'text-white', link.active ? 'bg-red-500' : link.label === '...' ? 'bg-blue-200' : 'bg-blue-500', link.url == null && link.label !== '...' ? 'hidden opacity-90 cursor-default bg-blue-400' : '']">
                 <span v-html="link.label"></span>
                 </Link>
             </div>
