@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use Inertia\Inertia;
+use App\Http\Controllers\FileUpload;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -39,5 +42,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
 });
 Route::resource('users', UserController::class);
+
+
+Route::get('/upload', [UploadController::class, 'index'])->name('upload.index');
+Route::post('/upload', [UploadController::class, 'store'])->name('upload.store');
+
+Route::get('/file', [FileController::class, 'index'])->name('file.index');
+Route::post('/file', [FileController::class, 'store'])->name('file.store');
 
 require __DIR__ . '/auth.php';
